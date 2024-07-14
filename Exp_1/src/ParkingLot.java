@@ -35,6 +35,17 @@ public class ParkingLot {
         }
     }
 
+    public Boolean exitHalf(Vehicle vehicle) {
+        if (!this.vehicles.containsKey(vehicle)){
+            return false;
+        }
+        else {
+            this.totalBalance += this.vehicles.get(vehicle) * this.pricePerTime / 2;
+            this.vehicles.remove(vehicle);
+            return true;
+        }
+    }
+
     public Integer getBalance() {
         return this.totalBalance;
     }
@@ -50,6 +61,26 @@ public class ParkingLot {
     }
     public int getCarNumber(){
         return vehicles.size();
+    }
+
+    public boolean checkVehicleExists(Vehicle vehicle){
+        return this.vehicles.containsKey(vehicle);
+    }
+
+    public Integer getVehicleExpectedStay(Vehicle vehicle) {
+        return this.vehicles.get(vehicle);
+    }
+    public Integer getSpaceShipNumber(){
+        Integer sum = 0;
+        sum += (int)this.vehicles.keySet().stream().filter(vehicle -> vehicle instanceof SpaceShip).count();
+        sum += this.vehicles.keySet().stream().filter(vehicle -> vehicle instanceof CargoShip).mapToInt(ship -> ((CargoShip) ship).getSpaceShipNumber()).sum();
+        return sum;
+    }
+    public Integer getVehicleNumber(){
+        Integer sum = 0;
+        sum += (int)this.vehicles.keySet().stream().filter(vehicle -> !(vehicle instanceof SpaceShip)).count();
+        sum += this.vehicles.keySet().stream().filter(vehicle -> vehicle instanceof CargoShip).mapToInt(ship -> ((CargoShip) ship).getVehicleNumber()).sum();
+        return sum;
     }
 
     // implement parking lot size
