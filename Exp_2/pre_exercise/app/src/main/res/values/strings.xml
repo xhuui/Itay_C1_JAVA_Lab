@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="middleText">Hi all, This text is in the strings.xml file !\nHow Cool!</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="edit_message">Enter a Message</string>
+    <string name="button_send">Send!</string>
+    <string name="title_activity_display_message">DisplayMessageActivity</string>
 </resources>
